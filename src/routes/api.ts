@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { submitFeedback } from '../controllers/feedbackController.js';
-//import { getVisitorCount, setVisitorCount } from '../controllers/visitorController';
+import { getVisitorCount, setVisitorCount } from '../controllers/visitorController.js';
 
 const router = Router();
 
@@ -8,9 +8,9 @@ const router = Router();
 router.post('/feedback', submitFeedback);
 
 // Endpoint to get visitor count
-//router.get('/visitor-count', getVisitorCount);
+router.get('/visitor-count', getVisitorCount);
 
 // Endpoint to set visitor count (for admin use)
-//router.post('/visitor', setVisitorCount);
+router.post('/visitor', setVisitorCount);
 
 export default router;
