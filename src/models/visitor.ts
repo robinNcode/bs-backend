@@ -1,4 +1,3 @@
-
 import mongoose from 'mongoose';
 
 const visitorSchema = new mongoose.Schema({
@@ -6,15 +5,23 @@ const visitorSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    browser: {
+    userAgent: {
         type: String,
         required: true,
+        default: 'Unknown',
+    },
+    lastVisit: {
+        type: Date,
+        default: Date.now,
     },
     createdAt: {
         type: Date,
         default: Date.now,
     },
 });
+
+// Compound index to efficiently find visitor by IP + device
+visitorSchema.index({ ip: 1, userAgent: 1 });
 
 const Visitor = mongoose.model('Visitor', visitorSchema);
 
